@@ -46,3 +46,6 @@
 R1 ansible_host=192.168.2.61
 R2 ansible_host=192.168.2.62
 R3 ansible_host=192.168.2.63
+
+[ios:vars]
+ansible_network_os=ios
