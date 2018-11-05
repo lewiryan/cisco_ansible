@@ -1,0 +1,54 @@
+---
+- hosts: ios
+  gather_facts: no
+  connection: local
+ 
+  tasks:
+  - name: OBTAIN LOGIN CREDENTIALS
+    include_vars: group_vars/ios/vars.yml
+ 
+  - name: DEFINE PROVIDER
+    set_fact:
+      provider:
+        host: "{{ inventory_hostname }}"
+        username: "{{ ansble_username }}"
+        password: "{{ ios_pass }}"
+        auth_pass: "{{ ios_enable_pass }}"
+ 
+  - name: RUN 'SHOW VERSION'
+    ios_command:
+      provider: "{{ provider }}"
+      commands:
+        - show version
+    register: version
+ 
+  - debug: var=version.stdout_lines
+ 
+  - name: RUN 'SHOW ACCESS-LIST TEST'
+    ios_command:
+      provider: "{{ provider }}"
+      commands:
+        - show access-list TEST 
+    register: before_acl
+ 
+  - debug: var=before_acl.stdout_lines
+ 
+  - name: CREATE 'TEST' ACCESS-LIST
+    ios_config:
+      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - 10 permit ip host 1.1.1.1 any
+        - 20 deny ip any any
+      parents: ['ip access-list extended TEST']
+      before: ['no ip access-list extended TEST']
+      match: exact
+ 
+  - name: RUN 'SHOW ACCESS-LIST TEST'
+    ios_command:
+      provider: "{{ provider }}"
+      commands:
+        - show access-list TEST 
+    register: after_acl
+ 
+  - debug: var=after_acl.stdout_lines
