@@ -1,69 +1,7 @@
-# Non Role Cisco IOS Module Based Ansible Playbook
+# Cisco IOS Module Based Ansible Playbooks
 
-Template for non role based ios, on demmand configuration. Uses Ansible modules for Cisco IOS.
-
-#### Update(s) 5/27/2018
-1. [Ansible 2.5+ `connection: network_cli`](https://github.com/jrosa770/cisco_ios-no_role/tree/master/network_cli)
-2. An [All in one approach for host variable files](https://github.com/jrosa770/cisco_ios-no_role/tree/master/all_in_one_host_vars)
-
-
-## Folder Structure
-
-```tree
-cisco_ios-no_role/
-├── all_in_one_host_vars
-│   └── README.md
-├── backup
-│   └── README.md
-├── cisco-cli-l2-multi-vlan.yml
-├── cisco-cli-l2-multi-vlan_dynamic.yml
-├── cisco-cli-multi-vlan-delete.yml
-├── cisco-cli-multi-vlan-deploy.yml
-├── cisco-cli-push.yml
-├── cisco-cli-vlan-delete.yml
-├── cisco-cli-vlan-deploy.yml
-├── config_partial
-│   └── raw_banner.cfg
-├── cygwin
-│   ├── ansible_cygwin.bash
-│   └── README.md
-├── hosts
-├── network_cli
-│   └── README.md
-├── play_results
-│   └── README.md
-├── README.md
-├── secrets.yml
-├── tasks
-│   ├── ios_banner-motd.yml
-│   ├── ios_command-multi-vlan-exist-check.yml
-│   ├── ios_command-reload_ios.yml
-│   ├── ios_command-runn-backup-save-to-start.yml
-│   ├── ios_command-vlan-exist-check.yml
-│   ├── ios_config-interface.yml
-│   ├── ios_config-l2-multi-vlan.yml
-│   ├── ios_config-multi-vlan-delete.yml
-│   ├── ios_config-multi-vlan-deploy.yml
-│   ├── ios_config-set-dns.yml
-│   ├── ios_config-vlan-delete.yml
-│   ├── ios_config-vlan-deploy.yml
-│   ├── ios_config-vlan-exist-check.yml
-│   └── ios_freeform.yml
-├── templates
-│   ├── README.md
-│   ├── vlan_id.j2
-│   ├── vlan-delete.j2
-│   ├── vlan-deploy.j2
-│   └── vlan-multi.j2
-└── vars
-    ├── README.md
-    ├── vlan.yml
-    ├── vlan_id.yml # Created by Playbook Task
-    ├── vlans.yml
-    └── vlans-multi.yml
-
-# Updated Tree: 9/6/2017
-```
+Playbooks for ios, and on demand configuration. Uses Ansible modules for Cisco IOS.
+Original Author: https://github.com/jrosa770
 
 > Usage:
 
