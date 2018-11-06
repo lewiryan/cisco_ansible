@@ -1,0 +1,37 @@
+  - name: RUN 'SHOW VERSION'
+    ios_command:
+#      provider: "{{ provider }}"
+      commands:
+        - show version
+    register: version
+
+  - debug: var=version.stdout_lines
+
+  - name: RUN 'SHOW ACCESS-LIST TEST'
+    ios_command:
+#      provider: "{{ provider }}"
+      commands:
+        - show access-list TEST
+    register: before_acl
+
+  - debug: var=before_acl.stdout_lines
+
+  - name: CREATE 'TEST' ACCESS-LIST
+    ios_config:
+#      provider: "{{ provider }}"
+      authorize: yes
+      lines:
+        - 10 permit ip host 1.1.1.1 any
+        - 20 deny ip any any
+      parents: ['ip access-list extended TEST']
+      before: ['no ip access-list extended TEST']
+      match: exact
+
+  - name: RUN 'SHOW ACCESS-LIST TEST'
+    ios_command:
+#      provider: "{{ provider }}"
+      commands:
+        - show access-list TEST
+    register: after_acl
+
+  - debug: var=after_acl.stdout_lines
