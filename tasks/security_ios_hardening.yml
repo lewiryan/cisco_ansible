@@ -1,0 +1,36 @@
+# Playbook General IOS Hardening
+# Referencing: https://www.cisco.com/c/en/us/support/docs/ip/access-lists/13608-21.html#anc0
+    #
+    - name: General IOS Hardening
+      ios_config:
+       lines: 
+        - ip cef
+        - ip ssh version 2
+        - ip ssh time-out 60
+        - ip ssh authentication-retries 3
+        - service nagle
+        - service tcp-keepalives-in
+        - service tcp-keepalives-out
+        - service timestamps debug datetime msec localtime show-timezone
+        - service timestamps log datetime msec localtime show-timezone
+        - service password-encryption
+        - no service dhcp
+        - no service config
+        - logging buffered 16384
+        - no logging console
+        - no ip http server
+        - no ip http secure-server
+        - ip subnet-zero
+        - ip classless
+        - no service pad
+        - no ip source-route
+        - no ip finger
+        - no ip bootp server
+        - ip dhcp bootp ignore
+        - ip options drop
+        - no ip domain-lookup
+        - no service dhcp
+        - no service udp-small-servers
+        - no cdp run
+        - login on-failure log
+        - login on-success log
