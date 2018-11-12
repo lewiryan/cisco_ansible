@@ -28,4 +28,4 @@
     when: authentication_provider == "alternate"
 
 # Want to do anything else? 
-  - include: tasks/security_ios_hardening.yml
+  - include: tasks/gather_facts.yml
